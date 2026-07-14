@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 878 920" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<filter id="bg_blur_all" x="-40%" y="-40%" width="180%" height="180%" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+<feGaussianBlur stdDeviation="60"/>
+</filter>
+</defs>
+<g id="Group 2131328930" filter="url(#bg_blur_all)">
+<ellipse id="Ellipse 6893" cx="439" cy="398.064" rx="349" ry="398.064" fill="black"/>
+<ellipse id="Ellipse 6894" cx="439.5" cy="587.971" rx="262.5" ry="208.156" fill="#123171"/>
+<ellipse id="Ellipse 6895" cx="440" cy="659.828" rx="178" ry="136.3" fill="#005BFF"/>
+<ellipse id="Ellipse 6896" cx="439" cy="763" rx="147" ry="33" fill="white"/>
+</g>
+</svg>

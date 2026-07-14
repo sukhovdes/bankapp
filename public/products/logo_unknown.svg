@@ -1,0 +1,20 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 26.1127 26.1127" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="&#208;&#152;&#208;&#186;&#208;&#190;&#208;&#189;&#208;&#186;&#208;&#184;">
+<g clip-path="url(#clip0_0_96)">
+<mask id="mask0_0_96" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="27" height="27">
+<circle id="BG" cx="13.0564" cy="13.0564" r="13.0564" fill="var(--fill-0, #CB11AB)"/>
+</mask>
+<g mask="url(#mask0_0_96)">
+<g id="Group 1336584889">
+<path id="Vector" d="M13.0564 26.1127C5.85361 26.1127 0 20.2818 0 13.0799C0 5.87711 5.85361 0 13.0564 0C20.2583 0 26.1127 5.87711 26.1127 13.0799C26.1127 20.2818 20.2583 26.1127 13.0564 26.1127Z" fill="var(--fill-0, #FF5226)"/>
+<path id="Vector_2" d="M11.7443 1.9024L-2.66764 24.6292H3.93891L12.2645 11.5293L12.0613 11.4362L9.75313 20.8106L14.6398 21.6811L19.6625 15.3009L19.3904 15.1642L17.6937 22.4113L28.3412 20.3606L26.1692 16.7449L22.3315 17.6327L22.7845 18.1593L24.5716 10.591L20.4084 7.77777L14.9567 14.7064L15.228 14.8439L17.4672 5.76535L11.7443 1.9024Z" fill="var(--fill-0, #FFDD00)"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_96">
+<rect width="26.1127" height="26.1127" rx="13.0564" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -1,0 +1,700 @@
+/* ===== Дизайн-токены (Figma, мобайл) ===== */
+:root {
+  --blue: #005bff;
+  --text-primary: #070707;
+  --text-secondary: rgba(0, 26, 52, 0.6);
+  --text-tertiary: rgba(0, 26, 52, 0.4);
+  --text-positive: #10c44c;
+  --text-light: #ffffff;
+  --text-light-secondary: rgba(255, 255, 255, 0.6);
+  --bg-page: #f2f5f9;
+  --bg-secondary: rgba(0, 48, 120, 0.04);
+  --bg-action-secondary: rgba(0, 150, 255, 0.08);
+  --bg-positive-secondary: rgba(29, 237, 98, 0.12);
+  --bg-overlap: rgba(204, 214, 228, 0.4);
+  --accent-pink: #f1117e;
+  --separator: rgba(204, 204, 221, 0.6);
+  --card-shadow: 0 0 20px rgba(77, 103, 198, 0.3);
+  --radius-card: 24px;
+  --safe-top: env(safe-area-inset-top, 24px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: 'Onest', -apple-system, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.app {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* ===== Иконки (SVG из Figma через mask) ===== */
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/* ===== Фоновый градиент ===== */
+.bg-gradient {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* viewBox SVG 878×920 = группа 758×860 + поля фильтра 60px по бокам и снизу */
+.bg-gradient__group {
+  position: absolute;
+  left: 50%;
+  top: -274px;
+  width: 878px;
+  height: 920px;
+  transform: translateX(-50%);
+}
+
+.bg-gradient__group svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ===== Верхняя панель ===== */
+.topbar {
+  position: absolute;
+  top: calc(var(--safe-top) + 6px);
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 8px 12px 16px;
+}
+
+/* тёмная подложка под фикс-шапку: в статике скрыта, проявляется при скролле */
+.topbar::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--safe-top) + 100px);
+  background: linear-gradient(180deg, rgba(1, 6, 15, 0.85) 0%, rgba(1, 6, 15, 0.55) 50%, rgba(1, 6, 15, 0) 100%);
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.topbar--scrolled::before { opacity: 1; }
+
+.topbar__left { flex: 1; min-width: 0; }
+
+.topbar__name {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--text-light);
+}
+
+.topbar__inn {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-light-secondary);
+}
+
+.topbar__right { display: flex; align-items: center; }
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 8px;
+}
+
+.icon-btn--s { min-width: 24px; min-height: 24px; padding: 4px; }
+
+/* ===== Скролл-контейнер ===== */
+.screen {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-top: calc(var(--safe-top) + 6px + 62px);
+  padding-bottom: calc(120px + var(--safe-bottom));
+}
+
+/* ===== Баланс ===== */
+.balance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 13px;
+}
+
+.balance__badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px 2px 8px;
+  min-height: 24px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--text-light);
+}
+
+.balance__sum {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 44px;
+  background: linear-gradient(1.33deg, #fff 28%, rgba(255, 255, 255, 0.8) 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+}
+
+/* ===== Карусель продуктов ===== */
+.widgets {
+  display: flex;
+  gap: 8px;
+  margin-top: 33px;
+  padding: 0 15px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.widgets::-webkit-scrollbar { display: none; }
+
+.widget {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+  min-width: 136px;
+  height: 164px;
+  padding: 16px;
+  border-radius: 24px;
+  background: #fff;
+}
+
+.widget--glass {
+  width: 161px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.06));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.widget__name {
+  font-size: 12px;
+  line-height: 16px;
+  opacity: 0.5;
+}
+
+.widget__sum {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  margin-top: 4px;
+}
+
+.widget__text {
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 4px;
+}
+
+.widget__caption {
+  font-size: 12px;
+  line-height: 16px;
+  opacity: 0.5;
+}
+
+.widget__caption--dark { opacity: 1; }
+
+.widget__title-light {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--text-light);
+}
+
+.widget__subtitle-light {
+  font-size: 14px;
+  line-height: 16px;
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.bankcard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 44px;
+  height: 30px;
+  margin-top: 8px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  background: linear-gradient(-45.6deg, #225dd7 32%, #123171 69%);
+}
+
+.bankcard span {
+  font-size: 10px;
+  line-height: 14px;
+  color: #fff;
+}
+
+/* ===== Кнопки ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.btn--secondary {
+  background: var(--bg-action-secondary);
+  color: var(--blue);
+  align-self: flex-start;
+}
+
+.btn--r8 { border-radius: 8px; }
+
+.btn--glass {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--text-light);
+}
+
+/* ===== Продукты (лента карточек) ===== */
+.products {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 34px;
+  padding: 0 16px;
+}
+
+.card {
+  background: #fff;
+  border-radius: var(--radius-card);
+  padding: 16px;
+}
+
+/* тень у виджетов временно убрана (было: box-shadow: var(--card-shadow)) */
+.card--shadow { box-shadow: none; }
+
+/* Заявка на кредит */
+.credit__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.progress {
+  height: 4px;
+  margin-top: 12px;
+  border-radius: 2px;
+  background: var(--separator);
+}
+
+.progress__fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--blue);
+}
+
+/* Ожидают действия */
+.pending__title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+  margin-bottom: 8px;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+}
+
+.cell__center { flex: 1; min-width: 0; }
+
+.cell__text {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.cell__sub {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.cell__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.counter {
+  min-width: 20px;
+  padding: 2px 4px;
+  border-radius: 10px;
+  background: var(--bg-overlap);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* Заработали от доходных продуктов */
+.income__title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.income__sum {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--text-positive);
+  margin-top: 4px;
+}
+
+.forecast { margin-top: 16px; position: relative; }
+
+.forecast__title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  margin-bottom: 4px;
+}
+
+.forecast__chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 73px;
+  margin-top: 24px;
+}
+
+.forecast__bar {
+  flex: 1;
+  position: relative;
+  border-radius: 8px 8px 0 0;
+}
+
+.forecast__bar span {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.forecast__bar--grey { height: 50px; background: var(--bg-secondary); }
+.forecast__bar--grey span { top: 17px; }
+
+.forecast__bar--green { height: 73px; background: var(--bg-positive-secondary); }
+.forecast__bar--green span { top: 40px; }
+
+.forecast__axis {
+  height: 1px;
+  background: rgba(0, 26, 52, 0.12);
+}
+
+.forecast__labels {
+  position: relative;
+  height: 24px;
+  padding-top: 8px;
+}
+
+.forecast__labels span {
+  position: absolute;
+  top: 8px;
+  transform: translateX(-50%);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* Прибыль */
+.profit { padding-bottom: 8px; }
+
+.profit__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profit__label {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.profit__trend {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-positive);
+}
+
+.profit__delta { margin-left: 4px; }
+
+.profit__sum {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+  margin-top: 4px;
+}
+
+.profit__list { margin-top: 4px; }
+
+.profit__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.profit__item + .profit__item {
+  border-top: 1px solid var(--separator);
+}
+
+.profit__value { color: #232323; }
+
+/* Ожидаемые поступления */
+.payout {
+  position: relative;
+  border-radius: 16px;
+  height: 108px;
+}
+
+.payout__titlerow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.payout__title {
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.payout__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+  font-size: 10px;
+  line-height: 14px;
+  color: #fff;
+}
+
+.payout__sum {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  margin-top: 4px;
+}
+
+.payout__btn {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 32px;
+  margin-top: 2px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--blue);
+}
+
+.payout__logos {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+}
+
+.payout__logo {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 1.5px #fff;
+}
+
+.payout__logo--ozon   { left: 2px;  top: 0;    background: var(--blue); padding: 10px 2px; }
+.payout__logo--second { left: 20px; top: 10px; }
+.payout__logo--wb     { left: 0;    top: 21px; }
+
+/* Календарь */
+.month__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+}
+
+.month__label {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.month__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-top: 12px;
+}
+
+.month__grid--weekdays { margin-top: 12px; }
+
+.month__weekday {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-secondary);
+}
+
+.day {
+  position: relative;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.day__num {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.day__sub {
+  font-size: 10px;
+  line-height: 14px;
+  color: var(--text-secondary);
+}
+
+.day--muted .day__num,
+.day--muted .day__sub { color: var(--text-tertiary); }
+
+.day__dot {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--accent-pink);
+}
+
+/* ===== Таббар ===== */
+.tabbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  padding: 16px 25px calc(12px + var(--safe-bottom));
+  display: flex;
+  justify-content: center;
+}
+
+.tabbar__pill {
+  display: flex;
+  width: 100%;
+  max-width: 333px;
+  height: 60px;
+  padding: 3px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: 0 8px 32px rgba(0, 26, 52, 0.14), inset 0 0 0 0.5px rgba(255, 255, 255, 0.6);
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  border-radius: 100px;
+}
+
+.tab span {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-secondary);
+}
+
+.tab--active { background: var(--bg-secondary); }
+.tab--active span { color: var(--blue); }
