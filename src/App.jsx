@@ -94,10 +94,21 @@ function Widgets() {
   )
 }
 
-/* ---------- Системный алерт (пульсирует 3 раза) ---------- */
+/* ---------- Системный алерт (свечение пульсирует 3 раза, тап скрывает) ---------- */
 function SystemAlert() {
+  const [hidden, setHidden] = useState(false)
+  const [gone, setGone] = useState(false)
+
+  if (gone) return null
+
   return (
-    <section className="alert">
+    <section
+      className={`alert ${hidden ? 'alert--hidden' : ''}`}
+      onClick={() => setHidden(true)}
+      onTransitionEnd={(e) => {
+        if (hidden && e.propertyName === 'height') setGone(true)
+      }}
+    >
       <Icon name="ic_m_danger_filled" size={24} color="#fff" />
       <div className="alert__text">
         <div className="alert__title">У вас ограничения на счете</div>
@@ -329,10 +340,10 @@ export default function App() {
       <HeaderGradient />
       <TopBar scrolled={scrolled} />
       <main className="screen">
+        <SystemAlert />
         <Balance />
         <Widgets />
         <div className="products">
-          <SystemAlert />
           <QuickActions />
           <PendingActions />
           <IncomeIsland />

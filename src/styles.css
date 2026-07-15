@@ -329,6 +329,24 @@ button {
   padding: 16px;
   border-radius: 24px;
   background: linear-gradient(180deg, rgba(0, 26, 52, 0.82) 0%, rgba(0, 26, 52, 0.12) 100%);
+  /* margin-bottom схлопывается с margin-top баланса (13px) — итоговый зазор = 24px */
+  margin: 8px 16px 24px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: height 0.35s ease, padding 0.35s ease, margin 0.35s ease,
+    opacity 0.25s ease, transform 0.35s ease;
+}
+
+/* тап по баннеру: схлопывается, контент ниже плавно поднимается */
+.alert--hidden {
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
 }
 
 .alert::before {
