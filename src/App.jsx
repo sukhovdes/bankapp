@@ -182,6 +182,25 @@ function PendingActions() {
   )
 }
 
+/* ---------- Галерея баннеров ---------- */
+const BANNERS = [1, 2, 3]
+
+function BannerGallery() {
+  return (
+    <div className="banners">
+      {BANNERS.map((n) => (
+        <button key={n} className="banner">
+          <div className="banner__text">
+            <div className="banner__title">Заголовок баннера</div>
+            <div className="banner__sub">Описание баннера</div>
+          </div>
+          <img className="banner__decor" src="/products/banner-decor.png" alt="" />
+        </button>
+      ))}
+    </div>
+  )
+}
+
 /* ---------- Заработали от доходных продуктов ---------- */
 function IncomeIsland() {
   return (
@@ -346,6 +365,7 @@ export default function App() {
         <div className="products">
           <QuickActions />
           <PendingActions />
+          <BannerGallery />
           <IncomeIsland />
           <ProfitIsland />
           <PayoutTile />
