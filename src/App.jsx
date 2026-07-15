@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Icon from './components/Icon.jsx'
 import bgGradientSvg from '../public/bg-header-gradient.svg?raw'
 
@@ -94,16 +94,53 @@ function Widgets() {
   )
 }
 
-/* ---------- Заявка на кредит ---------- */
-function CreditCard() {
+/* ---------- Системный алерт (пульсирует 3 раза) ---------- */
+function SystemAlert() {
   return (
-    <section className="card credit">
-      <div className="credit__row">
-        <span>Заявка на кредит •• 9266</span>
-        <Icon name="ic_s_chevron_right_filled" size={16} color="var(--text-tertiary)" />
+    <section className="alert">
+      <Icon name="ic_m_danger_filled" size={24} color="#fff" />
+      <div className="alert__text">
+        <div className="alert__title">У вас ограничения на счете</div>
+        <div className="alert__sub">Описание баннера</div>
       </div>
-      <div className="progress">
-        <div className="progress__fill" style={{ width: '84%' }} />
+    </section>
+  )
+}
+
+/* ---------- Быстрые действия ---------- */
+const QUICK_ACTIONS = [
+  { icon: 'ic_m_plus_sign_filled', label: 'Пополнить' },
+  { icon: 'ic_m_arrow_up_filled', label: 'Платеж' },
+  { icon: 'ic_m_plus_sign_filled', label: 'Между счетами' },
+]
+
+function QuickActions() {
+  return (
+    <section className="card qa">
+      <div className="qa__header">
+        <h2 className="qa__title">Быстрые действия</h2>
+        <button className="icon-btn icon-btn--s" aria-label="Настроить">
+          <Icon name="ic_s_settings_filled" size={16} color="var(--text-secondary)" />
+        </button>
+      </div>
+      <div className="qa__row">
+        {QUICK_ACTIONS.map((a) => (
+          <button key={a.label} className="qa__item">
+            <span className="qa__btn">
+              <Icon name={a.icon} size={24} color="var(--blue)" />
+            </span>
+            <span className="qa__label">{a.label}</span>
+          </button>
+        ))}
+        <button className="qa__item">
+          <span className="qa__btn qa__btn--all">
+            <Icon name="ic_m_overview_filled" size={20} color="var(--blue)" />
+            <Icon name="ic_m_protection_filled" size={20} color="var(--blue)" />
+            <Icon name="ic_m_price_list_filled" size={20} color="var(--blue)" />
+            <Icon name="ic_m_person_filled" size={20} color="var(--blue)" />
+          </span>
+          <span className="qa__label">Все</span>
+        </button>
       </div>
     </section>
   )
@@ -280,15 +317,23 @@ function TabBar() {
 
 export default function App() {
   const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <div className="app">
       <HeaderGradient />
       <TopBar scrolled={scrolled} />
-      <main className="screen" onScroll={(e) => setScrolled(e.currentTarget.scrollTop > 12)}>
+      <main className="screen">
         <Balance />
         <Widgets />
         <div className="products">
-          <CreditCard />
+          <SystemAlert />
+          <QuickActions />
           <PendingActions />
           <IncomeIsland />
           <ProfitIsland />

@@ -1,6 +1,6 @@
 # CONTEXT — хендофф
 
-Обновлено: 2026-07-14
+Обновлено: 2026-07-15
 
 ## Что это
 Мобильный прототип главного экрана Ozon Банка для бизнеса (веб-прототип живёт отдельно в `~/Прототип`, репо `sukhovdes/bank2.0`). Один экран, фуллскрин-мобайл (смотрится с телефона), интерактив — только скролл.
@@ -12,13 +12,15 @@
 - Репо: `git@github.com:sukhovdes/bankapp.git`. Деплоя пока нет.
 
 ## Структура
-- `src/App.jsx` — все секции экрана одним файлом: TopBar (фикс), Balance, Widgets (карусель), CreditCard, PendingActions, IncomeIsland (прогноз дохода), ProfitIsland, PayoutTile, MonthCalendar, TabBar (фикс).
+- `src/App.jsx` — все секции экрана одним файлом: TopBar (фикс), Balance, Widgets (карусель), SystemAlert (пульс красного свечения ×3), QuickActions, PendingActions, IncomeIsland (прогноз дохода), ProfitIsland, PayoutTile, MonthCalendar, TabBar (фикс). «Заявка на кредит» удалена по фрейму «Мой новый» (82206:2887).
 - `src/styles.css` — токены + все стили (BEM-иш).
 - `src/components/Icon.jsx` — иконки через CSS-mask: `url(/icons/<name>.svg)` + backgroundColor. Все SVG скачаны из Figma.
 - `public/bg-header-gradient.svg` — фоновый градиент шапки: эллипсы из Figma, но backdrop-blur заменён на общий `feGaussianBlur stdDeviation=60` (без шва, работает в Safari). Инлайнится в DOM через `?raw`-импорт в App.jsx.
 - `public/products/` — логотипы (wildberries, ozon, `logo_unknown.svg` — второй маркетплейс, имя не опознано).
 
 ## Гочи
+- Скролл — НАТИВНЫЙ (body): не заворачивать приложение в `position:fixed`-контейнер с внутренним скроллом, иначе Safari на iOS не сворачивает панели и режет высоту. Шапка/таббар/фон — `position:fixed`, слушатель скролла — на `window`.
+- Из фрейма «Мой новый» пока НЕ перенесены: «Последние операции», обновлённое «Ожидают действия» (счётчик 2, аватар).
 - Тени карточек (`--card-shadow`, свечение rgba(77,103,198,.3)) **временно отключены** по просьбе пользователя — см. `.card--shadow` в styles.css.
 - Подложка под фикс-шапкой (`.topbar::before`) появляется только при скролле (>12px, класс `topbar--scrolled` из onScroll в App.jsx). Текущая интенсивность 0.85/0.55 — согласована.
 - В превью-браузере программный `scrollTop` НЕ вызывает scroll-событие — проверять скролл-поведение руками или через `dispatchEvent`.

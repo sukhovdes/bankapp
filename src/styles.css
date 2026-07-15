@@ -42,10 +42,9 @@ button {
   color: inherit;
 }
 
+/* страница скроллится нативно (body), чтобы Safari сворачивал свои панели */
 .app {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
+  min-height: 100dvh;
 }
 
 /* ===== Иконки (SVG из Figma через mask) ===== */
@@ -62,7 +61,7 @@ button {
 
 /* ===== Фоновый градиент ===== */
 .bg-gradient {
-  position: absolute;
+  position: fixed;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
@@ -86,7 +85,7 @@ button {
 
 /* ===== Верхняя панель ===== */
 .topbar {
-  position: absolute;
+  position: fixed;
   top: calc(var(--safe-top) + 6px);
   left: 0;
   right: 0;
@@ -144,12 +143,9 @@ button {
 
 .icon-btn--s { min-width: 24px; min-height: 24px; padding: 4px; }
 
-/* ===== Скролл-контейнер ===== */
+/* ===== Контент (скроллится вместе с документом) ===== */
 .screen {
-  position: absolute;
-  inset: 0;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  position: relative;
   padding-top: calc(var(--safe-top) + 6px + 62px);
   padding-bottom: calc(120px + var(--safe-bottom));
 }
@@ -323,26 +319,103 @@ button {
 /* тень у виджетов временно убрана (было: box-shadow: var(--card-shadow)) */
 .card--shadow { box-shadow: none; }
 
-/* Заявка на кредит */
-.credit__row {
+/* Системный алерт: плашка статична, пульсирует только красное свечение */
+.alert {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 75px;
+  padding: 16px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(0, 26, 52, 0.82) 0%, rgba(0, 26, 52, 0.12) 100%);
+}
+
+.alert::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(198px at 0% 50%, rgba(245, 60, 20, 0.5), rgba(250, 76, 51, 0.31) 50%, rgba(255, 92, 82, 0.12) 100%);
+  animation: alert-glow 1.4s ease-in-out 0.6s 3;
+}
+
+@keyframes alert-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.alert > * { position: relative; }
+
+.alert__text { flex: 1; min-width: 0; }
+
+.alert__title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #f5f7fa;
+}
+
+.alert__sub {
+  font-size: 12px;
+  line-height: 14px;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Быстрые действия */
+.qa__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 16px;
-  line-height: 24px;
+  margin-bottom: 11px;
 }
 
-.progress {
-  height: 4px;
-  margin-top: 12px;
-  border-radius: 2px;
-  background: var(--separator);
+.qa__title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
 }
 
-.progress__fill {
-  height: 100%;
-  border-radius: 2px;
-  background: var(--blue);
+.qa__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+/* фикс-ширина = плитке, чтобы длинные подписи не растягивали колонки */
+.qa__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 56px;
+}
+
+.qa__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--bg-action-secondary);
+}
+
+.qa__btn--all {
+  display: grid;
+  grid-template-columns: repeat(2, 20px);
+  grid-template-rows: repeat(2, 20px);
+  gap: 4px 3px;
+  place-content: center;
+  background: #ebf7ff;
+}
+
+.qa__label {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--blue);
+  white-space: nowrap;
 }
 
 /* Ожидают действия */
@@ -657,7 +730,7 @@ button {
 
 /* ===== Таббар ===== */
 .tabbar {
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
