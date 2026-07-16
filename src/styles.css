@@ -397,10 +397,12 @@ button {
   line-height: 26px;
 }
 
+/* 4 равные колонки: зазоры между плитками одинаковые и не разъезжаются на широкой карточке */
 .qa__row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  align-items: start;
 }
 
 /* фикс-ширина = плитке, чтобы длинные подписи не растягивали колонки */
