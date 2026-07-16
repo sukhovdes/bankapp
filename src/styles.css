@@ -27,6 +27,16 @@ html, body {
   overscroll-behavior: none;
 }
 
+/* верхний оверскролл/статус-бар в цвет шапки, нижний — в цвет страницы */
+html {
+  background: linear-gradient(
+    180deg,
+    var(--overscroll-top, #01060f) 0%,
+    var(--overscroll-top, #01060f) 50%,
+    var(--bg-page) 50%
+  );
+}
+
 body {
   font-family: 'Onest', -apple-system, sans-serif;
   background: var(--bg-page);
