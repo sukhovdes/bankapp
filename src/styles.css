@@ -52,10 +52,12 @@ button {
   color: inherit;
 }
 
-/* страница скроллится нативно (body), чтобы Safari сворачивал свои панели */
+/* страница скроллится нативно (body), чтобы Safari сворачивал свои панели.
+   Фон страницы рисует .app: body покрашен в цвет статус-бара для Safari */
 .app {
   position: relative;
   min-height: 100dvh;
+  background: var(--bg-page);
 }
 
 /* ===== Иконки (SVG из Figma через mask) ===== */
