@@ -805,6 +805,201 @@ button {
   background: var(--accent-pink);
 }
 
+/* ===== Лёгкая версия (/light) ===== */
+.light {
+  position: relative;
+  min-height: 100dvh;
+  background: #f5f7fa;
+}
+
+/* металл: база + диагональные блики (параметры эллипсов из Figma bg/silver) */
+.metal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 372px;
+  background: rgba(204, 214, 228, 0.6);
+  overflow: hidden;
+}
+
+.metal__streak {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, #ffffff 0%, rgba(255, 255, 255, 0.6) 100%);
+  will-change: transform;
+}
+
+/* Ellipse 14: центр (333, 66), 65×285, −48°, blur 10.5 */
+.metal__streak--1 {
+  left: 300px;
+  top: -77px;
+  width: 65px;
+  height: 285px;
+  opacity: 0.7;
+  filter: blur(10.5px);
+  animation: metal-drift-1 6s ease-in-out infinite alternate;
+}
+
+/* Ellipse 15: центр (228, 129), 86×497, −48°, blur 25 */
+.metal__streak--2 {
+  left: 185px;
+  top: -119px;
+  width: 86px;
+  height: 497px;
+  opacity: 0.6;
+  filter: blur(25px);
+  animation: metal-drift-2 9s ease-in-out infinite alternate;
+}
+
+/* Ellipse 16: центр (85, 237), 45×497, −43°, blur 20.5 */
+.metal__streak--3 {
+  left: 63px;
+  top: -12px;
+  width: 45px;
+  height: 497px;
+  opacity: 0.6;
+  filter: blur(20.5px);
+  animation: metal-drift-3 7.5s ease-in-out infinite alternate;
+}
+
+@keyframes metal-drift-1 {
+  from { transform: rotate(-47.96deg) translateX(-80px) translateY(-30px); opacity: 0.25; }
+  to   { transform: rotate(-47.96deg) translateX(90px)  translateY(20px);  opacity: 0.9; }
+}
+
+@keyframes metal-drift-2 {
+  from { transform: rotate(-47.96deg) translateX(100px)  translateY(30px);  opacity: 0.75; }
+  to   { transform: rotate(-47.96deg) translateX(-110px) translateY(-25px); opacity: 0.3; }
+}
+
+@keyframes metal-drift-3 {
+  from { transform: rotate(-42.71deg) translateX(-90px) translateY(25px);  opacity: 0.3; }
+  to   { transform: rotate(-42.71deg) translateX(80px)  translateY(-20px); opacity: 0.8; }
+}
+
+.metal__fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 65px;
+  background: linear-gradient(180deg, rgba(245, 247, 250, 0) 0%, #f5f7fa 100%);
+}
+
+/* --- шапка светлой версии --- */
+.topbar--light { gap: 8px; padding-right: 6px; }
+
+.topbar--light::before {
+  background: linear-gradient(180deg, rgba(245, 247, 250, 0.98) 0%, rgba(245, 247, 250, 0.85) 60%, rgba(245, 247, 250, 0) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 60%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 60%, transparent 100%);
+}
+
+.topbar__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid #fff;
+  flex-shrink: 0;
+}
+
+.topbar__name--dark { color: var(--text-primary); }
+.topbar__inn--dark { color: var(--text-secondary); }
+
+/* --- уведомления над балансом --- */
+.notifs {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: grid-template-rows 0.45s ease, opacity 0.4s ease, transform 0.45s ease;
+}
+
+.notifs--show {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: none;
+}
+
+.notifs__clip { overflow: hidden; min-height: 0; }
+
+.notifs__box {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin: 8px 16px 11px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: var(--bg-secondary);
+}
+
+/* строка уведомления: схлопывается тем же grid-приёмом */
+.notif {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.35s ease, opacity 0.25s ease;
+}
+
+.notif--hide {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+
+.notif__clip { overflow: hidden; min-height: 0; }
+
+.notif__divider {
+  height: 1px;
+  margin-bottom: 11px;
+  background: rgba(0, 26, 52, 0.08);
+}
+
+.notif__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 3px 0;
+}
+
+.notif__text { flex: 1; min-width: 0; }
+
+.notif__title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.notif__sub {
+  font-size: 12px;
+  line-height: 14px;
+  margin-top: 4px;
+  color: var(--text-secondary);
+}
+
+.notif__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+/* --- баланс светлой версии --- */
+.balance__badge--light {
+  background: none;
+  border: 1px solid rgba(204, 214, 228, 0.6);
+  color: var(--text-secondary);
+}
+
+.balance__sum--dark {
+  background: none;
+  color: #001a34;
+}
+
+
 /* ===== Таббар ===== */
 .tabbar {
   position: fixed;

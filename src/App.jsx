@@ -51,7 +51,7 @@ function Balance() {
 }
 
 /* ---------- Карусель продуктов ---------- */
-function Widgets() {
+export function Widgets() {
   return (
     <div className="widgets">
       <div className="widget">
@@ -125,7 +125,7 @@ const QUICK_ACTIONS = [
   { icon: 'ic_m_plus_sign_filled', label: 'Между счетами' },
 ]
 
-function QuickActions() {
+export function QuickActions() {
   return (
     <section className="card qa">
       <div className="qa__header">
@@ -158,7 +158,7 @@ function QuickActions() {
 }
 
 /* ---------- Ожидают действия ---------- */
-function PendingActions() {
+export function PendingActions() {
   return (
     <section className="card pending">
       <h2 className="pending__title">Ожидают действия</h2>
@@ -185,7 +185,7 @@ function PendingActions() {
 /* ---------- Галерея баннеров ---------- */
 const BANNERS = [1, 2, 3]
 
-function BannerGallery() {
+export function BannerGallery() {
   return (
     <div className="banners">
       {BANNERS.map((n) => (
@@ -202,7 +202,7 @@ function BannerGallery() {
 }
 
 /* ---------- Заработали от доходных продуктов ---------- */
-function IncomeIsland() {
+export function IncomeIsland() {
   return (
     <section className="card card--shadow income">
       <div className="income__header">
@@ -230,7 +230,7 @@ function IncomeIsland() {
 }
 
 /* ---------- Прибыль ---------- */
-function ProfitIsland() {
+export function ProfitIsland() {
   return (
     <section className="card card--shadow profit">
       <div className="profit__row">
@@ -256,7 +256,7 @@ function ProfitIsland() {
 }
 
 /* ---------- Ожидаемые поступления ---------- */
-function PayoutTile() {
+export function PayoutTile() {
   return (
     <section className="card card--shadow payout">
       <div className="payout__body">
@@ -291,7 +291,7 @@ function buildDays() {
   return days
 }
 
-function MonthCalendar() {
+export function MonthCalendar() {
   const days = buildDays()
   return (
     <section className="card card--shadow month">
@@ -330,7 +330,7 @@ const TABS = [
   { id: 'services', label: 'Сервисы', icon: 'ic_m_tabbar_catalog_increased' },
 ]
 
-function TabBar() {
+export function TabBar() {
   return (
     <nav className="tabbar">
       <div className="tabbar__pill">
