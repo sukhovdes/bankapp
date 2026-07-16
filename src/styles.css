@@ -209,11 +209,32 @@ button {
   background: #fff;
 }
 
-.widget--glass {
+/* «Новый продукт»: на тёмной главной — стекло, на /light — светлая плитка (редизайн) */
+.widget--muted {
   width: 161px;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.06));
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+}
+
+.widget--muted .widget__title-dark { color: var(--text-light); }
+.widget--muted .widget__subtitle-muted { color: rgba(255, 255, 255, 0.8); }
+.widget--muted .btn--secondary {
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--text-light);
+}
+
+.light .widget--muted {
+  background: var(--bg-secondary);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.light .widget--muted .widget__title-dark { color: var(--text-primary); }
+.light .widget--muted .widget__subtitle-muted { color: var(--text-secondary); }
+.light .widget--muted .btn--secondary {
+  background: var(--bg-action-secondary);
+  color: var(--blue);
 }
 
 .widget__name {
@@ -243,18 +264,18 @@ button {
 
 .widget__caption--dark { opacity: 1; }
 
-.widget__title-light {
+.widget__title-dark {
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
-  color: var(--text-light);
+  color: var(--text-primary);
 }
 
-.widget__subtitle-light {
+.widget__subtitle-muted {
   font-size: 14px;
   line-height: 16px;
   margin-top: 2px;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
 }
 
 .bankcard {
@@ -440,7 +461,28 @@ button {
   white-space: nowrap;
 }
 
-/* Ожидают действия */
+/* Ожидают действия (редизайн: ячейки-плитки на серой подложке) */
+.pending--v2 { padding: 16px 8px 8px; }
+
+.pending--v2 .pending__title { padding: 0 12px; }
+
+.pending__group {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.cell.cell--tile {
+  background: var(--bg-secondary);
+  padding: 12px;
+}
+
+/* серый делитель между плитками (как в макете) */
+.cell.cell--tile + .cell.cell--tile {
+  border-top: 1px solid rgba(0, 26, 52, 0.08);
+}
+
 .pending__title {
   font-size: 18px;
   font-weight: 600;
@@ -986,6 +1028,44 @@ button {
   padding: 2px;
   flex-shrink: 0;
 }
+
+/* --- кнопки быстрых действий под балансом (/new_button) --- */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px;
+  margin: 16px 0 24px;
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 77px;
+}
+
+.action__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(224.7deg, rgba(0, 48, 120, 0.14) 5.7%, rgba(0, 48, 120, 0.056) 75.1%);
+}
+
+.action__label {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* --- баланс светлой версии: дальше от шапки, ближе к карточкам --- */
+.light .balance { margin-top: 36px; }
+.light .widgets { margin-top: 18px; }
 
 /* --- баланс светлой версии --- */
 .balance__badge--light {

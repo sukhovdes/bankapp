@@ -83,12 +83,12 @@ export function Widgets() {
         <div className="widget__caption widget__caption--dark">10,85% годовых</div>
       </div>
 
-      <div className="widget widget--glass">
+      <div className="widget widget--muted">
         <div>
-          <div className="widget__title-light">Новый продукт</div>
-          <div className="widget__subtitle-light">Карты, сервисы и услуги</div>
+          <div className="widget__title-dark">Новый продукт</div>
+          <div className="widget__subtitle-muted">Карты, сервисы и услуги</div>
         </div>
-        <button className="btn btn--glass">Открыть</button>
+        <button className="btn btn--secondary">Открыть</button>
       </div>
     </div>
   )
@@ -160,22 +160,24 @@ export function QuickActions() {
 /* ---------- Ожидают действия ---------- */
 export function PendingActions() {
   return (
-    <section className="card pending">
+    <section className="card pending pending--v2">
       <h2 className="pending__title">Ожидают действия</h2>
-      <div className="cell">
-        <div className="cell__center">
-          <div className="cell__text">Платёж по займу •• 9976</div>
-          <div className="cell__sub">102 525 ₽ до 18 ноября</div>
+      <div className="pending__group">
+        <div className="cell cell--tile">
+          <div className="cell__center">
+            <div className="cell__text">Платёж по займу •• 9976</div>
+            <div className="cell__sub">102 525 ₽ до 18 ноября</div>
+          </div>
+          <button className="btn btn--secondary btn--r8">Внести</button>
         </div>
-        <button className="btn btn--secondary btn--r8">Внести</button>
-      </div>
-      <div className="cell">
-        <div className="cell__center">
-          <div className="cell__text">Платежи на подпись</div>
-        </div>
-        <div className="cell__right">
-          <span className="counter">6</span>
-          <Icon name="ic_m_chevron_right_filled" size={24} color="var(--text-tertiary)" />
+        <div className="cell cell--tile">
+          <div className="cell__center">
+            <div className="cell__text">Платежи на подпись</div>
+          </div>
+          <div className="cell__right">
+            <span className="counter">6</span>
+            <Icon name="ic_m_chevron_right_filled" size={24} color="var(--text-tertiary)" />
+          </div>
         </div>
       </div>
     </section>

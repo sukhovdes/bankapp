@@ -116,6 +116,29 @@ function Notifications() {
   )
 }
 
+/* ---------- Кнопки быстрых действий под балансом (версия /new_button) ---------- */
+const ACTION_BUTTONS = [
+  { icon: 'ic_m_plus_sign_filled', label: 'Пополнить' },
+  { icon: 'ic_m_arrow_up_filled', label: 'Платеж' },
+  { icon: 'ic_m_sort_horisontal_filled', label: 'Между счетам' },
+  { icon: 'ic_m_catalog_tile_filled', label: 'Все' },
+]
+
+function ActionButtons() {
+  return (
+    <div className="actions">
+      {ACTION_BUTTONS.map((a) => (
+        <button key={a.label} className="action">
+          <span className="action__btn">
+            <Icon name={a.icon} size={24} color="var(--text-secondary)" />
+          </span>
+          <span className="action__label">{a.label}</span>
+        </button>
+      ))}
+    </div>
+  )
+}
+
 /* ---------- Баланс (тёмный текст, бейдж с обводкой) ---------- */
 function LightBalance() {
   return (
@@ -129,8 +152,10 @@ function LightBalance() {
   )
 }
 
-export default function Light() {
+/* variant="buttons" (/new_button): кнопки под балансом вместо блока «Быстрые действия» */
+export default function Light({ variant }) {
   const [scrolled, setScrolled] = useState(false)
+  const hasButtons = variant === 'buttons'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -145,11 +170,12 @@ export default function Light() {
       <main className="screen">
         <Notifications />
         <LightBalance />
+        {hasButtons && <ActionButtons />}
         <Widgets />
         <div className="products">
-          <QuickActions />
-          <BannerGallery />
+          {!hasButtons && <QuickActions />}
           <PendingActions />
+          <BannerGallery />
           <IncomeIsland />
           <ProfitIsland />
           <PayoutTile />
