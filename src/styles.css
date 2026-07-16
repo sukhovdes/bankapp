@@ -44,6 +44,7 @@ button {
 
 /* страница скроллится нативно (body), чтобы Safari сворачивал свои панели */
 .app {
+  position: relative;
   min-height: 100dvh;
 }
 
@@ -60,8 +61,9 @@ button {
 }
 
 /* ===== Фоновый градиент ===== */
+/* фон НЕ зафиксирован — уезжает вместе с контентом (эксперимент, можно откатить на fixed) */
 .bg-gradient {
-  position: fixed;
+  position: absolute;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
@@ -189,7 +191,7 @@ button {
   display: flex;
   gap: 8px;
   margin-top: 33px;
-  padding: 0 15px;
+  padding: 0 16px;
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -307,7 +309,7 @@ button {
   flex-direction: column;
   gap: 8px;
   margin-top: 34px;
-  padding: 0 16px;
+  padding: 0 8px;
 }
 
 .card {
@@ -488,7 +490,7 @@ button {
 .banners {
   display: flex;
   gap: 8px;
-  margin: 0 -16px; /* на всю ширину экрана поверх паддинга ленты */
+  margin: 0 -8px; /* на всю ширину экрана поверх паддинга ленты */
   padding: 0 23px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
