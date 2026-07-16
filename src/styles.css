@@ -941,6 +941,18 @@ button {
   background: linear-gradient(180deg, rgba(245, 247, 250, 0) 0%, #f5f7fa 100%);
 }
 
+/* спокойный верх: цвет статус-бара растворяется в металл,
+   чтобы анимированные блики не создавали шов под чёлкой */
+.metal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 110px;
+  background: linear-gradient(180deg, #e0e6ef 0%, #e0e6ef 30%, rgba(224, 230, 239, 0) 100%);
+}
+
 /* --- шапка светлой версии --- */
 .topbar--light { gap: 8px; padding-right: 6px; }
 
