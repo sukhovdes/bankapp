@@ -9,6 +9,7 @@ import {
   ProfitIsland,
   PayoutTile,
   MonthCalendar,
+  MyServices,
   CustomizeButton,
   TabBar,
 } from './App.jsx'
@@ -180,6 +181,7 @@ export default function Light({ variant }) {
           <IncomeIsland />
           <ProfitIsland />
           <PayoutTile />
+          <MyServices />
           <MonthCalendar />
           <CustomizeButton />
         </div>

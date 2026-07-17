@@ -1109,6 +1109,64 @@ button {
 }
 
 
+/* ===== Мои сервисы ===== */
+.services__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 11px;
+}
+
+.services__title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+}
+
+/* горизонтальный слайдер: 4-я иконка выглядывает из-за края карточки */
+.services { overflow: hidden; }
+
+.services__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 0 -16px;
+  padding: 0 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.services__row::-webkit-scrollbar { display: none; }
+
+/* фикс-ширина колонки: длинные подписи уходят в многоточие,
+   зазоры между иконками всегда одинаковые */
+.service {
+  flex: 0 0 80px;
+  width: 80px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.service__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.service__label {
+  max-width: 100%;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* ===== Настроить экран ===== */
 .customize {
   display: flex;
@@ -1122,6 +1180,166 @@ button {
   font-weight: 600;
   line-height: 24px;
   color: var(--text-secondary);
+}
+
+/* ===== Настроить главный (/settings) ===== */
+.settings {
+  min-height: 100dvh;
+  padding: calc(var(--safe-top) + 8px) 16px calc(32px + var(--safe-bottom));
+  background: var(--bg-page);
+}
+
+.settings__nav {
+  display: flex;
+  align-items: center;
+  margin-left: -10px;
+}
+
+.settings__title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 38px;
+  margin-top: 16px;
+}
+
+.settings__subtitle {
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+.settings__add {
+  display: block;
+  width: 100%;
+  margin-top: 24px;
+  padding: 18px;
+  border-radius: 20px;
+  background: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  color: var(--blue);
+}
+
+/* карточка «Баланс» с превью-скелетоном */
+.settings__wallet {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.settings__wallet-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 26px;
+}
+
+.settings__wallet-sub {
+  font-size: 14px;
+  line-height: 18px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.settings__preview {
+  flex-shrink: 0;
+  width: 132px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--bg-page);
+}
+
+.settings__preview-bar {
+  display: block;
+  width: 64px;
+  height: 12px;
+  margin: 0 auto;
+  border-radius: 6px;
+  background: rgba(0, 26, 52, 0.08);
+}
+
+.settings__preview-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.settings__preview-row span {
+  flex: 1;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(0, 26, 52, 0.08);
+}
+
+/* список разделов */
+.settings__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.sec {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.35s ease, opacity 0.25s ease;
+}
+
+.sec--hide {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+
+.sec__clip { overflow: hidden; min-height: 0; }
+
+.sec__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.sec__label {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.sec__controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sec__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--bg-page);
+}
+
+.sec__drag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 36px;
 }
 
 /* ===== Таббар ===== */

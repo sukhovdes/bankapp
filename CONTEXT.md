@@ -11,6 +11,11 @@
 - `npm run dev` → http://localhost:5174 (host: true — можно открыть с телефона по IP).
 - Репо: `git@github.com:sukhovdes/bankapp.git`. Деплой: Vercel, https://bankapp-liart.vercel.app (SPA-fallback в `vercel.json`).
 
+## Экран /settings — «Настроить главный»
+- `src/Settings.jsx`, вход — кнопка «Настроить экран» внизу любой версии, назад — history.back().
+- «Добавить разделы» — пока только кнопка; drag-ручки декоративные; корзина удаляет строку локально с анимацией (grid-rows 0fr).
+- «Мои сервисы» на главных — горизонтальный слайдер (4-я иконка выглядывает из-за края), иконки-картинки в `public/products/service-*.png`.
+
 ## Светлая версия — /light и /new_button
 - `src/Light.jsx`, роутинг без библиотек: `main.jsx` смотрит на `location.pathname`.
 - `/new_button` = `<Light variant="buttons" />`: вместо карточки «Быстрые действия» — ряд матовых кнопок под балансом (Пополнить/Платеж/Между счетам/Все), лента: Ожидают действия → баннеры → остальное.

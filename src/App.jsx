@@ -324,10 +324,40 @@ export function MonthCalendar() {
   )
 }
 
+/* ---------- Мои сервисы ---------- */
+const SERVICES = [
+  { img: 'service-acquiring', label: 'Эквайринг' },
+  { img: 'service-factoring', label: 'Факторинг' },
+  { img: 'service-accounting', label: 'Бухгалтерия' },
+  { img: 'service-salary', label: 'Зарплатный проект' },
+  { img: 'service-acquiring', label: 'Эквайринг' },
+]
+
+export function MyServices() {
+  return (
+    <section className="card services">
+      <div className="services__header">
+        <h2 className="services__title">Мои сервисы</h2>
+        <button className="icon-btn icon-btn--s" aria-label="Настроить сервисы">
+          <Icon name="ic_s_settings_filled" size={16} color="var(--text-secondary)" />
+        </button>
+      </div>
+      <div className="services__row">
+        {SERVICES.map((s, i) => (
+          <button key={i} className="service">
+            <img className="service__icon" src={`/products/${s.img}.png`} alt="" />
+            <span className="service__label">{s.label}</span>
+          </button>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 /* ---------- Настроить экран (линк внизу ленты) ---------- */
 export function CustomizeButton() {
   return (
-    <button className="customize">
+    <button className="customize" onClick={() => (window.location.href = '/settings')}>
       <Icon name="ic_s_settings_filled" size={16} color="var(--text-secondary)" />
       Настроить экран
     </button>
@@ -381,6 +411,7 @@ export default function App() {
           <IncomeIsland />
           <ProfitIsland />
           <PayoutTile />
+          <MyServices />
           <MonthCalendar />
           <CustomizeButton />
         </div>
