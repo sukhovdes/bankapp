@@ -170,8 +170,8 @@ export default function Light({ variant }) {
       <main className="screen">
         <Notifications />
         <LightBalance />
-        {hasButtons && <ActionButtons />}
         <Widgets />
+        {hasButtons && <ActionButtons />}
         <div className="products">
           {!hasButtons && <QuickActions />}
           <PendingActions />

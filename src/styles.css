@@ -1059,7 +1059,7 @@ button {
   display: flex;
   justify-content: space-between;
   padding: 0 16px;
-  margin: 16px 0 24px;
+  margin: 24px 0 0;
 }
 
 .action {
