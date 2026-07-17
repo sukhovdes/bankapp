@@ -1055,11 +1055,15 @@ button {
 }
 
 /* --- кнопки быстрых действий под балансом (/new_button) --- */
+/* ширина ряда ограничена макетной: на широких экранах (Pro Max)
+   кнопки не разъезжаются, ряд центрируется */
 .actions {
   display: flex;
   justify-content: space-between;
   padding: 0 16px;
-  margin: 24px 0 0;
+  margin: 24px auto 0;
+  width: 100%;
+  max-width: 375px;
 }
 
 .action {
@@ -1104,6 +1108,21 @@ button {
   color: #001a34;
 }
 
+
+/* ===== Настроить экран ===== */
+.customize {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 8px auto 0;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: var(--text-secondary);
+}
 
 /* ===== Таббар ===== */
 .tabbar {

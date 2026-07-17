@@ -324,6 +324,16 @@ export function MonthCalendar() {
   )
 }
 
+/* ---------- Настроить экран (линк внизу ленты) ---------- */
+export function CustomizeButton() {
+  return (
+    <button className="customize">
+      <Icon name="ic_s_settings_filled" size={16} color="var(--text-secondary)" />
+      Настроить экран
+    </button>
+  )
+}
+
 /* ---------- Таббар ---------- */
 const TABS = [
   { id: 'home', label: 'Главная', icon: 'ic_m_tabbar_home' },
@@ -372,6 +382,7 @@ export default function App() {
           <ProfitIsland />
           <PayoutTile />
           <MonthCalendar />
+          <CustomizeButton />
         </div>
       </main>
       <TabBar />
