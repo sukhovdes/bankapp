@@ -64,7 +64,7 @@ export default function Settings() {
           aria-label="Назад"
           onClick={() => (window.history.length > 1 ? window.history.back() : (window.location.href = '/'))}
         >
-          <Icon name="ic_m_chevron_left_filled" size={24} color="var(--text-primary)" />
+          <Icon name="ic_m_chevron_left_filled" size={24} color="var(--text-secondary)" />
         </button>
       </header>
 

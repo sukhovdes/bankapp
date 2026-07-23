@@ -68,19 +68,19 @@ export function Widgets() {
 
       <div className="widget">
         <div>
+          <div className="widget__name">Накопления</div>
+          <div className="widget__sum">320 251,23 ₽</div>
+        </div>
+        <div className="widget__caption widget__caption--dark">10,85% годовых</div>
+      </div>
+
+      <div className="widget">
+        <div>
           <div className="widget__name">Отсрочка платежа</div>
           <div className="widget__sum">200 000 ₽</div>
           <div className="widget__text">10 дней без %<br />на любые покупки</div>
         </div>
         <button className="btn btn--secondary">Оформить</button>
-      </div>
-
-      <div className="widget">
-        <div>
-          <div className="widget__name">Накопления</div>
-          <div className="widget__sum">320 251,23 ₽</div>
-        </div>
-        <div className="widget__caption widget__caption--dark">10,85% годовых</div>
       </div>
 
       <div className="widget widget--muted">
@@ -176,7 +176,6 @@ export function PendingActions() {
           </div>
           <div className="cell__right">
             <span className="counter">6</span>
-            <Icon name="ic_m_chevron_right_filled" size={24} color="var(--text-tertiary)" />
           </div>
         </div>
       </div>
