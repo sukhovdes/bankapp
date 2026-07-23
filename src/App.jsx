@@ -176,7 +176,6 @@ export function PendingActions() {
           </div>
           <div className="cell__right">
             <span className="counter">6</span>
-            <Icon name="ic_m_chevron_right_filled" size={24} color="var(--text-tertiary)" />
           </div>
         </div>
       </div>
