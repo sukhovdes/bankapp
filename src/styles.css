@@ -58,6 +58,8 @@ button {
   position: relative;
   min-height: 100dvh;
   background: var(--bg-page);
+  max-width: 430px;
+  margin: 0 auto;
 }
 
 /* ===== Иконки (SVG из Figma через mask) ===== */
@@ -103,6 +105,8 @@ button {
   top: calc(var(--safe-top) + 6px);
   left: 0;
   right: 0;
+  max-width: 430px;
+  margin: 0 auto;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -117,6 +121,8 @@ button {
   top: 0;
   left: 0;
   right: 0;
+  max-width: 430px;
+  margin: 0 auto;
   height: calc(var(--safe-top) + 100px);
   background: linear-gradient(180deg, rgba(1, 6, 15, 0.85) 0%, rgba(1, 6, 15, 0.55) 50%, rgba(1, 6, 15, 0) 100%);
   z-index: -1;
@@ -1187,6 +1193,21 @@ button {
   min-height: 100dvh;
   padding: calc(var(--safe-top) + 8px) 16px calc(32px + var(--safe-bottom));
   background: var(--bg-page);
+  max-width: 430px;
+  margin: 0 auto;
+}
+
+/* ===== Десктоп: показываем прототип как мобильный экран по центру,
+   без ручного переключения в режим устройства ===== */
+@media (min-width: 431px) {
+  body {
+    background: #d8dce3;
+  }
+
+  .app,
+  .settings {
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+  }
 }
 
 .settings__nav {
@@ -1348,6 +1369,8 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
+  max-width: 430px;
+  margin: 0 auto;
   z-index: 10;
   padding: 16px 25px calc(12px + var(--safe-bottom));
   display: flex;

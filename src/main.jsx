@@ -20,8 +20,12 @@ document.querySelector('meta[name="theme-color"]')?.setAttribute('content', topC
 document.documentElement.style.setProperty('--overscroll-top', topColor)
 if (isLightTheme) document.documentElement.style.setProperty('--bg-page', '#f5f7fa')
 // Safari красит область статус-бара по фону body — задаём цвет шапки,
-// сам фон страницы рисует .app поверх
-document.body.style.backgroundColor = topColor
+// сам фон страницы рисует .app поверх.
+// На десктоп-ширинах фон body — нейтральный (см. styles.css), чтобы
+// прототип сразу показывался мобильной колонкой без режима устройства.
+if (window.innerWidth <= 430) {
+  document.body.style.backgroundColor = topColor
+}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>{page}</React.StrictMode>,
