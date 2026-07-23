@@ -222,8 +222,8 @@ export function IncomeIsland() {
         </div>
         <div className="forecast__axis" />
         <div className="forecast__labels">
-          <span style={{ left: '23%' }}>Завтра</span>
-          <span style={{ left: '66%' }}>Через 30 дней</span>
+          <span>Завтра</span>
+          <span>Через 30 дней</span>
         </div>
       </div>
     </section>
