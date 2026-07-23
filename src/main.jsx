@@ -7,14 +7,16 @@ import './styles.css'
 
 const path = window.location.pathname
 
-let page = <App />
-if (path.startsWith('/new_button')) page = <Light variant="buttons" />
+// основная версия — /new_button (кнопки под балансом), она же на "/"
+// /dark — прежняя тёмная главная (App.jsx), /light — светлая без кнопок
+let page = <Light variant="buttons" />
+if (path.startsWith('/dark')) page = <App />
 else if (path.startsWith('/light')) page = <Light />
 else if (path.startsWith('/settings')) page = <Settings />
 
 // красим статус-бар/оверскролл Safari под тему страницы
-const isLightTheme = path.startsWith('/light') || path.startsWith('/new_button')
 const isSettings = path.startsWith('/settings')
+const isLightTheme = !path.startsWith('/dark') && !isSettings
 const topColor = isSettings ? '#f2f5f9' : isLightTheme ? '#e0e6ef' : '#01060f'
 document.querySelector('meta[name="theme-color"]')?.setAttribute('content', topColor)
 document.documentElement.style.setProperty('--overscroll-top', topColor)
