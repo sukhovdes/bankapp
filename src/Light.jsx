@@ -149,7 +149,7 @@ function LightBalance() {
         Общий баланс
         <Icon name="ic_m_picker_filled" size={16} color="var(--text-secondary)" />
       </div>
-      <div className="balance__sum balance__sum--dark">200 000,50 ₽</div>
+      <div className="balance__sum balance__sum--dark">8 187 123 ₽</div>
     </div>
   )
 }
